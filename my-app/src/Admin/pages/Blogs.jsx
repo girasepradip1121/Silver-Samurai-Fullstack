@@ -9,7 +9,6 @@ import {
   UserIcon,
 } from "@heroicons/react/24/outline";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import BlogModal from "./BlogModal";
 import { API_URL } from "../../Components/Variable";
 import toast from "react-hot-toast";

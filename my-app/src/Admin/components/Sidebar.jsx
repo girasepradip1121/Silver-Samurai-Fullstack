@@ -1,6 +1,5 @@
-// src/admin/components/Sidebar.jsx
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { 
   ChartBarSquareIcon as ChartBarIcon,
   ShoppingBagIcon,
@@ -21,17 +20,18 @@ const Sidebar = ({ onClose }) => {
     { name: 'Inquiries', path: '/admin/inquiries', icon: InboxIcon },
   ];
 
-  const handleNavClick=()=>{
-    if(onClose && window.innerWidth<1024){
+  const handleNavClick = () => {
+    if (onClose && window.innerWidth < 1024) {
       onClose();
     }
-  }
+  };
 
   return (
     <div className="h-full flex flex-col">
       <div className="flex items-center w-[150px] h-[60px]">
-          <img src="/logo.svg" alt="Logo" />
-        </div>
+        <img src="/logo.svg" alt="Logo" />
+      </div>
+      
       {/* Mobile close button */}
       <div className="lg:hidden flex items-center justify-between px-4 py-3 border-b border-gray-200">
         <div className="text-lg font-semibold">Admin Panel</div>
@@ -55,14 +55,18 @@ const Sidebar = ({ onClose }) => {
               }`
             }
           >
-            <item.icon
-              className={`mr-3 flex-shrink-0 h-5 w-5 ${
-                window.location.pathname === item.path
-                  ? 'text-indigo-500'
-                  : 'text-gray-400 group-hover:text-gray-500'
-              }`}
-            />
-            {item.name}
+            {({ isActive }) => (
+              <>
+                <item.icon
+                  className={`mr-3 flex-shrink-0 h-5 w-5 ${
+                    isActive
+                      ? 'text-indigo-500'
+                      : 'text-gray-400 group-hover:text-gray-500'
+                  }`}
+                />
+                {item.name}
+              </>
+            )}
           </NavLink>
         ))}
       </nav>
